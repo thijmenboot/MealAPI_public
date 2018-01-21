@@ -94,7 +94,7 @@ app.use(function (error, req, res, next) {
 });
 
 app.listen(PORT, function(){
-	console.log('De server luistert op port: ');	
+	console.log('De server luistert op port: ' + PORT);	
 });
 
 module.exports = app;

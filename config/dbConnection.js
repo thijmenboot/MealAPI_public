@@ -6,7 +6,7 @@ const connectionSettings = {
     user: process.env.DB_USER || config.dbUser,
     password: process.env.DB_PASSWORD || config.dbPassword,
     database: process.env.DB_DATABASE || config.dbDatabase,
-    port: process.env.DB_PORT || config.dbPort,
+    port: process.env.DB_PORT || 3306,
     debug: false
 }
 const reconnectTimeout = 2000; // ms.
