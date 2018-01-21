@@ -5,9 +5,14 @@ var router = express.Router;
 var bodyParser = require('body-parser')
 var logger = require('morgan');
 
+var meal_routes_v1 = require('./api/meal_routes_v1');
+var user_routes_v1 = require('./api/user_routes_v1');
+var house_routes_v1 = require('./api/house_routes_v1');
+
 var config = require('./config/config');
 
 var app = express();
+var auth = require('./controllers/authController');
 
 app.set('superSecret', config.secret);
 app.use(logger('dev'));
