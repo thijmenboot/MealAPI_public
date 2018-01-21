@@ -20,6 +20,10 @@ app.use(bodyParser.json());
 
 var PORT = process.env.PORT || 4001;
 
+app.use('/api/v1', meal_routes_v1);
+app.use('/api/v1', user_routes_v1);
+app.use('/api/v1', house_routes_v1);
+
 app.use('*', function (req, res, next) {
 	res.status(404)
 		.json({
