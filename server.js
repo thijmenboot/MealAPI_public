@@ -36,7 +36,7 @@ app.use('/login', function(req, res, next){
 		else{
 			res.status(500)
 			.json({
-				error: "Error: " + error
+				error: "Error: invalid credentials "
 			}).end();	
 		}
 	});
