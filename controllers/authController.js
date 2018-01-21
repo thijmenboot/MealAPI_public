@@ -29,13 +29,13 @@ module.exports = {
     },
     authUser(username, password, callback){
         var query = "SELECT * FROM user WHERE Username = ? AND Password = ?";
-        var result = db.query(query, [username, password], function (error, results) {
+        var result = db.query(query, [username, password], function (error, results, userID) {
             if(error){
-                callback(error, false);
+                callback(error, false, null);
             }
 
             if(results.length > 0){
-                callback(null, true);
+                callback(null, true, results[0].ID);
             }
             else{
                 callback(null, false);

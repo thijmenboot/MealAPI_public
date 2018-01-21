@@ -26,10 +26,11 @@ app.use(bodyParser.json());
 var PORT = process.env.PORT || 4001;
 
 app.use('/login', function(req, res, next){
-	auth.authUser(req.body.username, req.body.password, function(error, success) {
+	auth.authUser(req.body.username, req.body.password, function(error, success, userID) {
 		if(success){
 			res.status(200)
 			.json({
+				user: userID,
 				token: auth.encodeToken(req.body.username)
 			}).end();
 		}
