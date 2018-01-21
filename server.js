@@ -20,6 +20,55 @@ app.use(bodyParser.json());
 
 var PORT = process.env.PORT || 4001;
 
+app.use('/login', function(req, res, next){
+	auth.authUser(req.body.username, req.body.password, function(error, success) {
+		if(success){
+			res.status(200)
+			.json({
+				token: auth.encodeToken(req.body.username)
+			}).end();
+		}
+		else{
+			res.status(500)
+			.json({
+				error: "Error: " + error
+			}).end();	
+		}
+	});
+});
+
+app.use('/register', function(req, res, next){
+	auth.registerUser(req.body.firstname, req.body.lastname, req.body.username, req.body.password, function(error, success) {
+		if(success){
+			res.status(200)
+			.json({
+				message: "Succesfully registered user."
+			}).end();
+		}
+		else{
+			res.status(500)
+			.json({
+				error: "Error: " + error
+			}).end();	
+		}
+	});
+});
+
+app.all(new RegExp("[^(\/login)]"), function(req, res, next){
+	res.contentType('application/json');
+
+	var token = (req.header('X-Access-Token')) || '';
+	auth.decodeToken(token, function (err, payload) {
+		if (err){
+			console.log(err.message);
+			res.status((err.status || 401 )).json({error: new Error("Not authorized").message});
+		}
+		else{
+			next();
+		}
+	});
+});
+
 app.use('/api/v1', meal_routes_v1);
 app.use('/api/v1', user_routes_v1);
 app.use('/api/v1', house_routes_v1);
