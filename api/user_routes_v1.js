@@ -10,7 +10,7 @@ routes.get('/users/getIDbyJoincode/:id', userController.getIDbyJoincode);
 routes.post('/users/create', userController.create);
 routes.post('/users/update/:id', userController.update);
 routes.get('/users/delete/:id', userController.delete);
-routes.get('/users/getAllMealsFromUser/:id');
-routes.get('/users/getHouseFromUser/:id');
+routes.get('/users/getAllMealsFromUser/:id', userController.getAllMealsFromUser);
+routes.get('/users/getHouseFromUser/:id', userController.getHouseFromUser);
 
 module.exports = routes;
