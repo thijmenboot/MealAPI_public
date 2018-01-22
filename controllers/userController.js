@@ -117,7 +117,7 @@ module.exports = {
 
     getHouseFromUser(req, res, next) {
         console.log('link.controller getHouseFromUser');
-        db.query('SELECT * FROM house WHERE houseID IN (SELECT houseID FROM link_house_user WHERE userID = ?)', [req.params.id] , function (error, rows, fields) {
+        db.query('SELECT * FROM house WHERE ID IN (SELECT houseID FROM link_house_user WHERE userID = ?)', [req.params.id] , function (error, rows, fields) {
             if (error) {
                 next(error);
             } else {
